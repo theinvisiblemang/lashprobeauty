@@ -6,7 +6,7 @@
   <title>Lashed by LC | Kingston Lash & Brow Experts</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   
   <style>
     :root {
@@ -27,7 +27,7 @@
       line-height: 1.6;
     }
 
-    /* --- LUXURY INTRO SCREEN WITH SIGNATURE LOGO --- */
+    /* --- LUXURY INTRO SCREEN --- */
     #splash-screen {
       position: fixed;
       inset: 0;
@@ -38,7 +38,7 @@
       align-items: center;
       background: #070708;
       animation: fadeOutSplash 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-      animation-delay: 1.6s;
+      animation-delay: 1.2s;
       pointer-events: none;
     }
 
@@ -48,8 +48,7 @@
       margin-bottom: 15px;
       opacity: 0;
       transform: scale(0.92);
-      animation: elegantReveal 1.2s cubic-bezier(0.215, 0.610, 0.355, 1) forwards;
-      animation-delay: 0.1s;
+      animation: elegantReveal 1s cubic-bezier(0.215, 0.610, 0.355, 1) forwards;
     }
 
     .splash-logo-container img {
@@ -58,50 +57,12 @@
       object-fit: contain;
     }
 
-    .splash-bar-loader {
-      width: 50px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--luxury-gold), transparent);
-      position: relative;
-      overflow: hidden;
-      margin-top: 10px;
-    }
-
-    .splash-bar-loader::after {
-      content: '';
-      position: absolute;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, #fff, transparent);
-      animation: shine 1.2s ease-in-out infinite;
-    }
-
     @keyframes elegantReveal {
-      0% { opacity: 0; transform: scale(0.92); filter: blur(3px); }
-      100% { opacity: 1; transform: scale(1); filter: blur(0px); }
-    }
-
-    @keyframes shine {
-      100% { left: 100%; }
+      100% { opacity: 1; transform: scale(1); }
     }
 
     @keyframes fadeOutSplash {
-      0% { opacity: 1; visibility: visible; }
       100% { opacity: 0; visibility: hidden; }
-    }
-
-    /* --- MAIN CONTENT LOGO CONTAINER --- */
-    .hero-logo-frame {
-      width: 160px;
-      height: 160px;
-      margin: 0 auto 20px;
-    }
-    
-    .hero-logo-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
     }
 
     /* --- NAVIGATION --- */
@@ -133,6 +94,18 @@
       background: radial-gradient(circle at center, rgba(223, 183, 108, 0.04) 0%, transparent 70%);
     }
 
+    .hero-logo-frame {
+      width: 160px;
+      height: 160px;
+      margin: 0 auto 20px;
+    }
+    
+    .hero-logo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
     .hero h1 {
       font-family: 'Cormorant Garamond', serif;
       font-size: 2.4rem;
@@ -146,19 +119,6 @@
       text-transform: uppercase;
       letter-spacing: 3px;
       color: var(--luxury-gold);
-      margin-bottom: 30px;
-    }
-
-    .cta-button {
-      display: inline-block;
-      padding: 14px 36px;
-      border: 1px solid var(--luxury-gold);
-      color: var(--luxury-gold);
-      text-decoration: none;
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 2px;
     }
 
     /* --- ABOUT STUDIO --- */
@@ -167,7 +127,6 @@
       background: var(--card-surface);
       border-top: 1px solid var(--border-tint);
       border-bottom: 1px solid var(--border-tint);
-      margin: 20px 0;
     }
 
     .section-label {
@@ -175,7 +134,7 @@
       text-transform: uppercase;
       letter-spacing: 4px;
       color: var(--luxury-gold);
-      margin-bottom: 15px;
+      margin-bottom: 20px;
       display: block;
     }
 
@@ -188,31 +147,125 @@
 
     .about-section p { font-size: 0.85rem; color: #b3b3b3; font-weight: 300; }
 
-    /* --- SERVICES --- */
-    .services-container { padding: 30px 20px; }
+    /* --- RICH VISUAL PREVIEW LIST --- */
+    .services-container { padding: 40px 20px; }
     
-    .service-row {
+    .service-card-row {
       display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      padding: 20px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      align-items: center;
+      gap: 20px;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
     }
 
-    .service-details { max-width: 75%; }
-    .service-details h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 4px; }
-    .service-details p { font-size: 0.75rem; color: #999; font-weight: 300; }
+    .service-thumb {
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1px solid var(--luxury-gold);
+      flex-shrink: 0;
+    }
+
+    .service-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .service-info { flex-grow: 1; }
+    .service-info h4 { font-size: 0.9rem; font-weight: 500; margin-bottom: 2px; color: #f5f5f5; }
+    .service-info p { font-size: 0.75rem; color: #999; font-weight: 300; padding-right: 10px; }
     .service-price { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--luxury-gold); font-weight: 600; }
+
+    /* --- IMMERSIVE CALL TO ACTION DISPLAY --- */
+    .immersive-cta {
+      position: relative;
+      padding: 100px 24px;
+      text-align: center;
+      overflow: hidden;
+      background: #000;
+      border-bottom: 1px solid var(--border-tint);
+    }
+
+    .immersive-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.28;
+      filter: grayscale(20%) contrast(110%);
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-content h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 400;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 14px 38px;
+      background: rgba(10, 10, 10, 0.85);
+      border: 1px solid var(--luxury-gold);
+      color: var(--luxury-gold);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      backdrop-filter: blur(5px);
+      transition: all 0.3s ease;
+    }
+
+    /* --- INDUSTRY PARTNERS SHOWCASE --- */
+    .partners-section {
+      padding: 40px 24px 20px;
+      text-align: center;
+    }
+
+    .partners-grid {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 15px;
+      opacity: 0.75;
+    }
+
+    .partner-logo-box {
+      width: 110px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .partner-logo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: brightness(0) invert(1) opacity(0.7);
+    }
 
     /* --- WORKING SCHEDULE --- */
     .schedule-box {
-      margin: 40px 20px;
-      padding: 30px 24px;
+      margin: 20px;
+      padding: 24px;
       background: var(--card-surface);
       border-left: 2px solid var(--luxury-gold);
     }
 
-    .schedule-row { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 0.85rem; }
+    .schedule-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.8rem; }
 
     /* --- FOOTER --- */
     footer {
@@ -226,13 +279,11 @@
 </head>
 <body>
 
-  <!-- 1. INTRO SPLASH OVERLAY WITH BRANDED LOGO ASSET -->
+  <!-- 1. INTRO SPLASH OVERLAY -->
   <div id="splash-screen">
     <div class="splash-logo-container">
-      <!-- Reference file path to match their exact golden lash badge -->
       <img src="images/lashed-by-lc-logo.png" alt="Lashed by LC Gold Badge Logo">
     </div>
-    <div class="splash-bar-loader"></div>
   </div>
 
   <!-- NAVIGATION -->
@@ -247,12 +298,10 @@
   <!-- HERO COMPONENT -->
   <section class="hero">
     <div class="hero-logo-frame">
-      <!-- Logo used dynamically on the main landing body -->
       <img src="images/lashed-by-lc-logo.png" alt="Lashed by LC Main Emblem">
     </div>
     <h1>Elevating Natural Beauty</h1>
     <div class="hero-subtitle">Premium Lash & Brow Studio</div>
-    <a href="#" class="cta-button">Book Appointment</a>
   </section>
 
   <!-- ABOUT STUDIO -->
@@ -264,24 +313,96 @@
     </p>
   </section>
 
-  <!-- MENU LIST -->
+  <!-- REWRITTEN VISUAL SERVICES LAYOUT -->
   <section class="services-container">
-    <span class="section-label">Available Menu</span>
+    <span class="section-label">Signature Sets</span>
     
-    <div class="service-row">
-      <div class="service-details">
+    <!-- Service item 1 using pricing_plans_img_01.png -->
+    <div class="service-card-row">
+      <div class="service-thumb">
+        <img src="images/pricing_plans_img_01.png" alt="Classic Light Option Close-up">
+      </div>
+      <div class="service-info">
         <h4>Classic Natural Set</h4>
-        <p>Most natural option. This is when one single extension is applied to one single natural lash.</p>
+        <p>One individual luxury extension applied safely onto each isolated natural lash.</p>
       </div>
       <div class="service-price">Premium</div>
     </div>
 
-    <div class="service-row">
-      <div class="service-details">
+    <!-- Service item 2 using pricing_plans_img_02.png -->
+    <div class="service-card-row">
+      <div class="service-thumb">
+        <img src="images/pricing_plans_img_02.png" alt="Hybrid Definition Set Close-up">
+      </div>
+      <div class="service-info">
+        <h4>Hybrid Definition</h4>
+        <p>A textured blend of classic alignment combined with premium volume fans.</p>
+      </div>
+      <div class="service-price">Elite</div>
+    </div>
+
+    <!-- Service item 3 using pricing_plans_img_03.png -->
+    <div class="service-card-row">
+      <div class="service-thumb">
+        <img src="images/pricing_plans_img_03.png" alt="Volume Fuller Fill Close-up">
+      </div>
+      <div class="service-info">
         <h4>Volume Fuller Fill</h4>
-        <p>This is a slightly more dramatic look as volume fans are added to classic lashes to achieve a fuller look.</p>
+        <p>Lightweight handmade multi-lash fans beautifully arranged for dense fullness.</p>
       </div>
       <div class="service-price">Luxury</div>
+    </div>
+
+    <!-- Service item 4 using pricing_plans_img_05.png -->
+    <div class="service-card-row">
+      <div class="service-thumb">
+        <img src="images/pricing_plans_img_05.png" alt="Mega Drama Set Close-up">
+      </div>
+      <div class="service-info">
+        <h4>Mega Drama Styling</h4>
+        <p>Our ultimate dark-line density configuration utilizing ultra-fine premium fibers.</p>
+      </div>
+      <div class="service-price">Max</div>
+    </div>
+
+    <!-- Service item 5 using pricing_plans_img_06.png -->
+    <div class="service-card-row">
+      <div class="service-thumb">
+        <img src="images/pricing_plans_img_06.png" alt="Brow Shaping Accent Close-up">
+      </div>
+      <div class="service-info">
+        <h4>Symmetry Brow Sculpting</h4>
+        <p>Precise mapping, styling, and high-definition architectural contour trim.</p>
+      </div>
+      <div class="service-price">Sculpt</div>
+    </div>
+  </section>
+
+  <!-- IMMERSIVE CALL TO ACTION FEATURING Untitled-Design-1024x1024.jpg -->
+  <section class="immersive-cta">
+    <img src="images/Untitled-Design-1024x1024.jpg" class="immersive-bg" alt="Lashed by LC High Fashion Treatment Context">
+    <div class="cta-content">
+      <h3>Experience Luxury Artistry</h3>
+      <a href="#" class="cta-button">Book Your Session</a>
+    </div>
+  </section>
+
+  <!-- INDUSTRY BRAND SHIELD PARTNERS SHOWCASE -->
+  <section class="partners-section">
+    <span class="section-label" style="margin-bottom: 5px;">Featured Affiliates</span>
+    <div class="partners-grid">
+      <div class="partner-logo-box">
+        <img src="images/partners_01.png" alt="Mia & May Hair & Makeup Partner Accent">
+      </div>
+      <div class="partner-logo-box">
+        <img src="images/partners_02.png" alt="Beauty Makeup Artists Partner Accent">
+      </div>
+      <div class="partner-logo-box">
+        <img src="images/partners_03.png" alt="Brow Craft Partner Accent">
+      </div>
+      <div class="partner-logo-box">
+        <img src="images/partners_04.png" alt="MCONE Partner Accent">
+      </div>
     </div>
   </section>
 
