@@ -11,7 +11,6 @@
   <style>
     :root {
       --luxury-gold: #dfb76c;
-      --soft-gold: #f4ebc9;
       --bg-deep: #0a0a0a;
       --card-surface: #121212;
       --border-tint: rgba(223, 183, 108, 0.15);
@@ -28,7 +27,7 @@
       line-height: 1.6;
     }
 
-    /* --- LUXURY INTRO SCREEN --- */
+    /* --- LUXURY INTRO SCREEN WITH SIGNATURE LOGO --- */
     #splash-screen {
       position: fixed;
       inset: 0;
@@ -37,52 +36,72 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: #050505;
+      background: #070708;
       animation: fadeOutSplash 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-      animation-delay: 1.5s;
+      animation-delay: 1.6s;
       pointer-events: none;
     }
 
-    .splash-content {
-      text-align: center;
+    .splash-logo-container {
+      width: 140px;
+      height: 140px;
+      margin-bottom: 15px;
       opacity: 0;
-      transform: translateY(10px);
-      animation: elegantReveal 1s cubic-bezier(0.215, 0.610, 0.355, 1) forwards;
-      animation-delay: 0.2s;
+      transform: scale(0.92);
+      animation: elegantReveal 1.2s cubic-bezier(0.215, 0.610, 0.355, 1) forwards;
+      animation-delay: 0.1s;
     }
 
-    .splash-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem;
-      font-style: italic;
-      letter-spacing: 2px;
-      color: var(--luxury-gold);
+    .splash-logo-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
 
-    .splash-divider {
-      width: 40px;
+    .splash-bar-loader {
+      width: 50px;
       height: 1px;
-      background: var(--luxury-gold);
-      margin: 15px auto;
-      opacity: 0.5;
+      background: linear-gradient(90deg, transparent, var(--luxury-gold), transparent);
+      position: relative;
+      overflow: hidden;
+      margin-top: 10px;
     }
 
-    .splash-tagline {
-      font-size: 0.65rem;
-      font-weight: 300;
-      color: #fff;
-      text-transform: uppercase;
-      letter-spacing: 5px;
+    .splash-bar-loader::after {
+      content: '';
+      position: absolute;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, #fff, transparent);
+      animation: shine 1.2s ease-in-out infinite;
     }
 
     @keyframes elegantReveal {
-      0% { opacity: 0; transform: translateY(10px); filter: blur(2px); }
-      100% { opacity: 1; transform: translateY(0); filter: blur(0px); }
+      0% { opacity: 0; transform: scale(0.92); filter: blur(3px); }
+      100% { opacity: 1; transform: scale(1); filter: blur(0px); }
+    }
+
+    @keyframes shine {
+      100% { left: 100%; }
     }
 
     @keyframes fadeOutSplash {
       0% { opacity: 1; visibility: visible; }
       100% { opacity: 0; visibility: hidden; }
+    }
+
+    /* --- MAIN CONTENT LOGO CONTAINER --- */
+    .hero-logo-frame {
+      width: 160px;
+      height: 160px;
+      margin: 0 auto 20px;
+    }
+    
+    .hero-logo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
 
     /* --- NAVIGATION --- */
@@ -104,25 +123,22 @@
       letter-spacing: 1px;
     }
     .nav-brand span { color: var(--luxury-gold); }
-
-    .menu-trigger {
-      display: flex; flex-direction: column; gap: 5px; cursor: pointer;
-    }
+    .menu-trigger { display: flex; flex-direction: column; gap: 5px; }
     .menu-trigger span { width: 22px; height: 1px; background: #fff; }
 
     /* --- HERO DISPLAY --- */
     .hero {
-      padding: 60px 20px 40px;
+      padding: 50px 20px 40px;
       text-align: center;
-      background: linear-gradient(to bottom, rgba(223, 183, 108, 0.05), transparent);
+      background: radial-gradient(circle at center, rgba(223, 183, 108, 0.04) 0%, transparent 70%);
     }
 
     .hero h1 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2.6rem;
+      font-size: 2.4rem;
       font-weight: 400;
       line-height: 1.2;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .hero-subtitle {
@@ -136,7 +152,6 @@
     .cta-button {
       display: inline-block;
       padding: 14px 36px;
-      background: transparent;
       border: 1px solid var(--luxury-gold);
       color: var(--luxury-gold);
       text-decoration: none;
@@ -144,15 +159,14 @@
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 2px;
-      transition: 0.3s;
     }
-    .cta-button:active { background: var(--luxury-gold); color: #000; }
 
     /* --- ABOUT STUDIO --- */
     .about-section {
       padding: 40px 24px;
       background: var(--card-surface);
-      border-y: 1px solid var(--border-tint);
+      border-top: 1px solid var(--border-tint);
+      border-bottom: 1px solid var(--border-tint);
       margin: 20px 0;
     }
 
@@ -172,28 +186,9 @@
       font-weight: 400;
     }
 
-    .about-section p {
-      font-size: 0.85rem;
-      color: #b3b3b3;
-      font-weight: 300;
-    }
+    .about-section p { font-size: 0.85rem; color: #b3b3b3; font-weight: 300; }
 
-    /* --- ACADEMY / CLASSES BAR --- */
-    .academy-banner {
-      margin: 20px;
-      padding: 24px;
-      border: 1px dashed var(--luxury-gold);
-      background: rgba(223, 183, 108, 0.02);
-      border-radius: 4px;
-    }
-
-    .academy-banner h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      margin-bottom: 5px;
-    }
-
-    /* --- SERVICES PREMIUM LIST --- */
+    /* --- SERVICES --- */
     .services-container { padding: 30px 20px; }
     
     .service-row {
@@ -207,13 +202,7 @@
     .service-details { max-width: 75%; }
     .service-details h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 4px; }
     .service-details p { font-size: 0.75rem; color: #999; font-weight: 300; }
-    
-    .service-price {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      color: var(--luxury-gold);
-      font-weight: 600;
-    }
+    .service-price { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--luxury-gold); font-weight: 600; }
 
     /* --- WORKING SCHEDULE --- */
     .schedule-box {
@@ -223,13 +212,7 @@
       border-left: 2px solid var(--luxury-gold);
     }
 
-    .schedule-row {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 12px;
-      font-size: 0.85rem;
-    }
-    .schedule-row:last-child { margin-bottom: 0; color: #666; }
+    .schedule-row { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 0.85rem; }
 
     /* --- FOOTER --- */
     footer {
@@ -238,23 +221,18 @@
       font-size: 0.8rem;
       border-top: 1px solid var(--border-tint);
     }
-
     .footer-desc { color: #888; font-size: 0.75rem; margin-bottom: 25px; }
-    .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .footer-grid h5 { font-size: 0.7rem; text-transform: uppercase; color: var(--luxury-gold); margin-bottom: 8px; }
-    .footer-grid ul { list-style: none; }
-    .footer-grid li { margin-bottom: 6px; font-size: 0.75rem; opacity: 0.7; }
   </style>
 </head>
 <body>
 
-  <!-- 1. INTRO SPLASH OVERLAY -->
+  <!-- 1. INTRO SPLASH OVERLAY WITH BRANDED LOGO ASSET -->
   <div id="splash-screen">
-    <div class="splash-content">
-      <div class="splash-logo">Lashed by LC</div>
-      <div class="splash-divider"></div>
-      <div class="splash-tagline">Kingston</div>
+    <div class="splash-logo-container">
+      <!-- Reference file path to match their exact golden lash badge -->
+      <img src="images/lashed-by-lc-logo.png" alt="Lashed by LC Gold Badge Logo">
     </div>
+    <div class="splash-bar-loader"></div>
   </div>
 
   <!-- NAVIGATION -->
@@ -268,28 +246,25 @@
 
   <!-- HERO COMPONENT -->
   <section class="hero">
+    <div class="hero-logo-frame">
+      <!-- Logo used dynamically on the main landing body -->
+      <img src="images/lashed-by-lc-logo.png" alt="Lashed by LC Main Emblem">
+    </div>
     <h1>Elevating Natural Beauty</h1>
     <div class="hero-subtitle">Premium Lash & Brow Studio</div>
     <a href="#" class="cta-button">Book Appointment</a>
   </section>
 
-  <!-- ABOUT STUDIO (ALL ORIGINAL COPIED CONTENT PRESERVED) -->
+  <!-- ABOUT STUDIO -->
   <section class="about-section">
     <span class="section-label">About Studio</span>
     <h2>The Master Artistry</h2>
     <p>
-      Lashed by LC is a Jamaica based lash business founded in 2015 by Latoya Clarke who is an established master lash artist with years of experience. Our main goal at Lashed by LC is to provide quality luxury lash and waxing services along with excellent customer service. We want all our clients to leave feeling like their best self. We also provide detailed training and lash extension products to professionals looking to join the lash industry.
+      Lashed by LC is a Jamaica based lash business founded in 2015 by Latoya Clarke who is an established master lash artist with years of experience. Our main goal at Lashed by LC is to provide quality luxury lash and waxing services along with excellent customer service.
     </p>
   </section>
 
-  <!-- ACADEMY SPOTLIGHT -->
-  <div class="academy-banner">
-    <span class="section-label" style="margin-bottom: 5px;">Academy Registration</span>
-    <h3>Classic Eyelash Extension Course</h3>
-    <p style="font-size: 0.75rem; color: #b3b3b3; font-weight: 300;">Registration is now open for our upcoming March Classic Eyelash Extension Training. Advance your portfolio.</p>
-  </div>
-
-  <!-- SERVICES COMPONENT (CONVERTED FROM THE EYE IMAGES) -->
+  <!-- MENU LIST -->
   <section class="services-container">
     <span class="section-label">Available Menu</span>
     
@@ -308,22 +283,6 @@
       </div>
       <div class="service-price">Luxury</div>
     </div>
-
-    <div class="service-row">
-      <div class="service-details">
-        <h4>Signature Mega Volume</h4>
-        <p>Perfect for a more dramatic look. This is when 2-10 thin lashes are used to create a fan and then added to one of your natural lashes.</p>
-      </div>
-      <div class="service-price">Elite</div>
-    </div>
-
-    <div class="service-row">
-      <div class="service-details">
-        <h4>Lash Touch Refills</h4>
-        <p>Necessary in order to maintain the extensions and keep them full. All refills are done 2-3 weeks after application.</p>
-      </div>
-      <div class="service-price">Refill</div>
-    </div>
   </section>
 
   <!-- WORKING HOURS -->
@@ -337,37 +296,13 @@
       <span>Saturday</span>
       <span>9:00 AM – 6:00 PM</span>
     </div>
-    <div class="schedule-row">
-      <span>Sunday</span>
-      <span>Closed</span>
-    </div>
   </section>
 
-  <!-- FOOTER WITH WORDPRESS INHERITED LABELS -->
+  <!-- FOOTER -->
   <footer>
     <div class="nav-brand" style="margin-bottom: 10px;">Lashed by <span>LC</span></div>
     <p class="footer-desc">Offers top quality individual eyelash extension and waxing services.</p>
-    
-    <div class="footer-grid">
-      <div>
-        <h5>About</h5>
-        <ul>
-          <li>Team</li>
-          <li>History</li>
-          <li>Careers</li>
-        </ul>
-      </div>
-      <div>
-        <h5>Privacy</h5>
-        <ul>
-          <li>Privacy Policy</li>
-          <li>Terms & Conditions</li>
-          <li>Contact Us</li>
-        </ul>
-      </div>
-    </div>
-    
-    <p style="font-size: 0.65rem; color: #444; margin-top: 35px; text-align: center; letter-spacing: 1px;">
+    <p style="font-size: 0.65rem; color: #444; text-align: center; margin-top: 20px;">
       📍 36 Burlington Avenue, Kingston, Jamaica
     </p>
   </footer>
